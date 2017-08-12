@@ -2,6 +2,7 @@ package com.depli;
 
 import com.depli.data.NodeDataMap;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.Executor;
 
 @SpringBootApplication
+@EnableAutoConfiguration
 @EnableAsync
 public class DepliApplication extends AsyncConfigurerSupport {
 

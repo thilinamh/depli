@@ -1,4 +1,4 @@
-package com.depli.entities;
+package com.depli.entities.persistent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,7 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Created by lpsandaruwan on 3/22/17.
+ * @author Lahiru Pathirage
+ * @since 3/22/17
  */
 
 @Entity

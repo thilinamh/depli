@@ -14,27 +14,27 @@ import java.lang.management.OperatingSystemMXBean;
 
 public class OperatingSystemDataObserver {
 
-    private JMXConnectionObserver JMXConnectionObserver;
+    private JMXConnectionObserver jmxConnectionObserver;
     private OperatingSystemMXBean operatingSystemMXBean;
-    private com.depli.data.object.OperatingSystemData operatingSystemData;
+    private com.depli.data.objects.OperatingSystemData operatingSystemData;
 
-    public OperatingSystemDataObserver(JMXConnectionObserver JMXConnectionObserver) {
-        this.JMXConnectionObserver = JMXConnectionObserver;
-        this.operatingSystemData = new com.depli.data.object.OperatingSystemData();
+    public OperatingSystemDataObserver(JMXConnectionObserver jmxConnectionObserver) {
+        this.jmxConnectionObserver = jmxConnectionObserver;
+        this.operatingSystemData = new com.depli.data.objects.OperatingSystemData();
     }
 
     public OperatingSystemMXBean getOperatingSystemMXBean() {
         return operatingSystemMXBean;
     }
 
-    public com.depli.data.object.OperatingSystemData getOperatingSystemData() {
+    public com.depli.data.objects.OperatingSystemData getOperatingSystemData() {
         return operatingSystemData;
     }
 
     // Initialize observers OperatingSystemMXBean
     public OperatingSystemMXBean initialize() throws IOException {
         operatingSystemMXBean = ManagementFactory.newPlatformMXBeanProxy(
-                JMXConnectionObserver.getmBeanServerConnection(),
+                jmxConnectionObserver.getmBeanServerConnection(),
                 ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME,
                 OperatingSystemMXBean.class
         );
@@ -42,8 +42,8 @@ public class OperatingSystemDataObserver {
         return operatingSystemMXBean;
     }
 
-    // Refresh and get OperatingSystemDataObserver object
-    public com.depli.data.object.OperatingSystemData refreshData() {
+    // Refresh and get OperatingSystemDataObserver objects
+    public com.depli.data.objects.OperatingSystemData refreshData() {
         operatingSystemData.setData(
                 operatingSystemMXBean.getArch(),
                 operatingSystemMXBean.getAvailableProcessors(),

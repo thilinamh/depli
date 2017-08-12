@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * NodeDataMap
- * observers object list.
+ * observers objects list.
  * <p>
  * Created by lpsandaruwan on 3/23/17.
  */

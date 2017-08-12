@@ -1,13 +1,13 @@
-package com.depli.data.object;
+package com.depli.data.objects;
 
 /**
- * PEOperatingSystemData
+ * PlatformSystemData
  * Platform extension operating system data. Keeps host operating system's statistics data.
  * <p>
  * Created by lpsandaruwan on 3/28/17.
  */
 
-public class PEOperatingSystemData {
+public class PlatformSystemData {
 
     private float hostCpuUsage;
     private float freePhysicalMemory;
@@ -17,7 +17,7 @@ public class PEOperatingSystemData {
     private float totalSwapSpace;
 
     // default constructor
-    public PEOperatingSystemData() {
+    public PlatformSystemData() {
     }
 
     public void setData(double hostCpuUsage,

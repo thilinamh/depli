@@ -1,6 +1,6 @@
 package com.depli.utilities.observers;
 
-import com.depli.entities.JMXNode;
+import com.depli.entities.persistent.JMXNode;
 
 import javax.management.MBeanServerConnection;
 import javax.management.remote.JMXConnector;
@@ -40,7 +40,7 @@ public class JMXConnectionObserver {
         return mBeanServerConnection;
     }
 
-    // Create connection to a JMX observers and returns MBeanServerConnection object
+    // Create connection to a JMX observers and returns MBeanServerConnection objects
     public MBeanServerConnection getConnection() throws IOException {
         // set JMX observers URL
         String serviceUrl = "service:jmx:rmi:///jndi/rmi://" + jmxNode.getHostname() + ":" + jmxNode.getPort() + "/jmxrmi";

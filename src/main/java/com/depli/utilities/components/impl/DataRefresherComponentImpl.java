@@ -1,7 +1,7 @@
-package com.depli.utilities.components.implementations;
+package com.depli.utilities.components.impl;
 
-import com.depli.utilities.components.DataRefresherComponent;
 import com.depli.data.NodeData;
+import com.depli.utilities.components.DataRefresherComponent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ import static com.depli.DepliApplication.nodeDataMap;
  */
 
 @Component
-public class DataRefresherComponentImplementation implements DataRefresherComponent {
+public class DataRefresherComponentImpl implements DataRefresherComponent {
 
     // update instant node data objects
     @Async
@@ -28,7 +28,6 @@ public class DataRefresherComponentImplementation implements DataRefresherCompon
     @Async
     public void refreshNodeData(long nodeId) {
         nodeDataMap.getByNodeId(nodeId).refreshData();
-        ;
     }
 
     // Iterate through data map and refresh instant data

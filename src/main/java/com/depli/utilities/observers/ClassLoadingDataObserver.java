@@ -14,27 +14,27 @@ import java.lang.management.ManagementFactory;
 
 public class ClassLoadingDataObserver {
 
-    private JMXConnectionObserver JMXConnectionObserver;
+    private JMXConnectionObserver jmxConnectionObserver;
     private ClassLoadingMXBean classLoadingMXBean;
-    private com.depli.data.object.ClassLoadingData classLoadingData;
+    private com.depli.data.objects.ClassLoadingData classLoadingData;
 
-    public ClassLoadingDataObserver(JMXConnectionObserver JMXConnectionObserver) {
-        this.JMXConnectionObserver = JMXConnectionObserver;
-        this.classLoadingData = new com.depli.data.object.ClassLoadingData();
+    public ClassLoadingDataObserver(JMXConnectionObserver jmxConnectionObserver) {
+        this.jmxConnectionObserver = jmxConnectionObserver;
+        this.classLoadingData = new com.depli.data.objects.ClassLoadingData();
     }
 
     public ClassLoadingMXBean getClassLoadingMXBean() {
         return classLoadingMXBean;
     }
 
-    public com.depli.data.object.ClassLoadingData getClassLoadingData() {
+    public com.depli.data.objects.ClassLoadingData getClassLoadingData() {
         return classLoadingData;
     }
 
     // Load observers ClassLoadingMXBean
     public ClassLoadingMXBean initialize() throws IOException {
         classLoadingMXBean = ManagementFactory.newPlatformMXBeanProxy(
-                JMXConnectionObserver.getmBeanServerConnection(),
+                jmxConnectionObserver.getmBeanServerConnection(),
                 ManagementFactory.CLASS_LOADING_MXBEAN_NAME,
                 ClassLoadingMXBean.class
         );
@@ -43,7 +43,7 @@ public class ClassLoadingDataObserver {
     }
 
     // Refresh and get ClassObjectLoadingData
-    public com.depli.data.object.ClassLoadingData refreshData() {
+    public com.depli.data.objects.ClassLoadingData refreshData() {
         classLoadingData.setData(
                 classLoadingMXBean.getLoadedClassCount(),
                 classLoadingMXBean.getTotalLoadedClassCount(),

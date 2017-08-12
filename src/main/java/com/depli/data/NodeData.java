@@ -1,6 +1,6 @@
 package com.depli.data;
 
-import com.depli.data.object.StatisticsData;
+import com.depli.data.objects.StatisticsData;
 import com.depli.utilities.observers.*;
 
 /**
@@ -12,7 +12,7 @@ import com.depli.utilities.observers.*;
 
 public class NodeData {
 
-    private final com.depli.utilities.observers.JMXConnectionObserver JMXConnectionObserver;
+    private final JMXConnectionObserver JMXConnectionObserver;
     private final ClassLoadingDataObserver classLoadingDataObserver;
     private final MemoryDataObserver memoryDataObserver;
     private final OperatingSystemDataObserver operatingSystemDataObserver;
@@ -21,6 +21,7 @@ public class NodeData {
     private final ThreadDataObserver threadDataObserver;
     private StatisticsData statisticsData;
     private boolean isInitialized;
+
     // temp variable to keep timestamps
     private long previousJvmCpuTime;
     private long previousJvmUptime;
@@ -48,7 +49,6 @@ public class NodeData {
         operatingSystemDataObserver.refreshData();
         platformSystemDataObserver.refreshData();
 
-        // Update statistics data
         updateStatisticsData();
     }
 
@@ -126,9 +126,9 @@ public class NodeData {
         // set cpu related data
         statisticsData.setJvmCpuUsageData(getJvmCpuUsage());
 
-        // set memory related data
-        statisticsData.setUsedHeapMemory(memoryDataObserver.getMemoryData().getHeapMemory().getUsed());
-        statisticsData.setUsedNonHeapMemory(memoryDataObserver.getMemoryData().getNonHeapMemory().getUsed());
+        // set non persistent related data
+        statisticsData.setUsedHeapMemory(memoryDataObserver.getMemoryUsageData().getHeapMemory().getUsed());
+        statisticsData.setUsedNonHeapMemory(memoryDataObserver.getMemoryUsageData().getNonHeapMemory().getUsed());
 
         // set jvm uptime
         statisticsData.setJvmUptime(runtimeDataObserver.getRuntimeMXBean().getUptime());
@@ -140,8 +140,8 @@ public class NodeData {
         statisticsData.setTotalStartedThreadCount(threadDataObserver.getThreadMXBean().getTotalStartedThreadCount());
 
         // set host related data
-        statisticsData.setHostCpuUsage(platformSystemDataObserver.getPeOperatingSystemData().getHostCpuUsage());
-        statisticsData.setHostFreePhysicalMemory(platformSystemDataObserver.getPeOperatingSystemData().getFreePhysicalMemory());
-        statisticsData.setHostTotalPhysicalMemory(platformSystemDataObserver.getPeOperatingSystemData().getTotalPhysicalMemory());
+        statisticsData.setHostCpuUsage(platformSystemDataObserver.getPlatformSystemData().getHostCpuUsage());
+        statisticsData.setHostFreePhysicalMemory(platformSystemDataObserver.getPlatformSystemData().getFreePhysicalMemory());
+        statisticsData.setHostTotalPhysicalMemory(platformSystemDataObserver.getPlatformSystemData().getTotalPhysicalMemory());
     }
 }

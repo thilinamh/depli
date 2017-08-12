@@ -1,7 +1,7 @@
 package com.depli.controllers;
 
-import com.depli.entities.JMXNode;
-import com.depli.services.implementations.JMXNodeServiceImplementation;
+import com.depli.entities.persistent.JMXNode;
+import com.depli.services.JMXNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,31 +18,30 @@ import java.util.List;
 public class JMXNodeController {
 
     @Autowired
-    private JMXNodeServiceImplementation jmxNodeServiceImplementation;
+    private JMXNodeService jmxNodeServiceImpl;
 
     @RequestMapping(value = "/nodes", method = RequestMethod.GET)
     public List<JMXNode> getAllJMXNodes() {
-        if (jmxNodeServiceImplementation.findAll() == null) {
-            return null;
-        }
-        return jmxNodeServiceImplementation.findAll();
+        return jmxNodeServiceImpl.findAll();
     }
 
     @RequestMapping(value = "/nodes/{nodeId}", method = RequestMethod.GET)
     public JMXNode getByNodeId(@PathVariable long nodeId) {
-        if (jmxNodeServiceImplementation.findByNodeId(nodeId) == null) {
+        if (jmxNodeServiceImpl.findByNodeId(nodeId) == null) {
             return null;
         }
-        return jmxNodeServiceImplementation.findByNodeId(nodeId);
+        return jmxNodeServiceImpl.findByNodeId(nodeId);
     }
 
     @RequestMapping(value = "/nodes/save", method = RequestMethod.POST)
     public JMXNode saveNodeData(@RequestBody JMXNode jmxNode) {
-        return jmxNodeServiceImplementation.save(jmxNode);
+        return jmxNodeServiceImpl.save(jmxNode);
     }
 
     @RequestMapping(value = "/nodes/{nodeId}", method = RequestMethod.DELETE)
-    public long deleteByNodeId(@PathVariable long nodeId) {
-        return jmxNodeServiceImplementation.removeByNodeId(nodeId);
+    public Long deleteByNodeId(@PathVariable long nodeId) {
+         jmxNodeServiceImpl.removeByNodeId(nodeId);
+
+         return Long.valueOf(1);
     }
 }

@@ -1,6 +1,6 @@
 package com.depli.services;
 
-import com.depli.entities.JMXNode;
+import com.depli.entities.persistent.JMXNode;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface JMXNodeService {
 
     public JMXNode findByNodeId(long nodeId);
 
-    public Long removeByNodeId(long nodeId);
+    public void removeByNodeId(long nodeId);
 
     public JMXNode save(JMXNode jmxNode);
 }

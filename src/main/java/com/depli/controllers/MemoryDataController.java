@@ -1,6 +1,6 @@
 package com.depli.controllers;
 
-import com.depli.data.object.MemoryData;
+import com.depli.data.objects.MemoryUsageData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +20,9 @@ import static com.depli.DepliApplication.nodeDataMap;
 public class MemoryDataController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-    public MemoryData findClassLoadingDataById(@PathVariable long nodeId) {
+    public MemoryUsageData findClassLoadingDataById(@PathVariable long nodeId) {
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
-            return nodeDataMap.getByNodeId(nodeId).getMemoryDataObserver().getMemoryData();
+            return nodeDataMap.getByNodeId(nodeId).getMemoryDataObserver().getMemoryUsageData();
         }
 
         return null;

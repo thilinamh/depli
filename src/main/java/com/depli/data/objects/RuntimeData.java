@@ -1,4 +1,4 @@
-package com.depli.data.object;
+package com.depli.data.objects;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

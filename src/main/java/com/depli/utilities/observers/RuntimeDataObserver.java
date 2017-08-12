@@ -16,18 +16,18 @@ public class RuntimeDataObserver {
 
     private JMXConnectionObserver JMXConnectionObserver;
     private RuntimeMXBean runtimeMXBean;
-    private com.depli.data.object.RuntimeData runtimeData;
+    private com.depli.data.objects.RuntimeData runtimeData;
 
     public RuntimeDataObserver(JMXConnectionObserver JMXConnectionObserver) {
         this.JMXConnectionObserver = JMXConnectionObserver;
-        this.runtimeData = new com.depli.data.object.RuntimeData();
+        this.runtimeData = new com.depli.data.objects.RuntimeData();
     }
 
     public RuntimeMXBean getRuntimeMXBean() {
         return runtimeMXBean;
     }
 
-    public com.depli.data.object.RuntimeData getRuntimeData() {
+    public com.depli.data.objects.RuntimeData getRuntimeData() {
         return runtimeData;
     }
 
@@ -42,8 +42,8 @@ public class RuntimeDataObserver {
         return runtimeMXBean;
     }
 
-    // Refresh and get RuntimeDataObserver object
-    public com.depli.data.object.RuntimeData refreshData() {
+    // Refresh and get RuntimeDataObserver objects
+    public com.depli.data.objects.RuntimeData refreshData() {
         runtimeData.setData(
                 runtimeMXBean.getBootClassPath(),
                 runtimeMXBean.getClassPath(),

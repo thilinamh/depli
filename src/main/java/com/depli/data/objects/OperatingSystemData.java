@@ -1,4 +1,4 @@
-package com.depli.data.object;
+package com.depli.data.objects;
 
 /**
  * OperatingSystemDataObserver

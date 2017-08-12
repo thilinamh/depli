@@ -1,40 +1,44 @@
 package com.depli.utilities.observers;
 
+import com.depli.data.objects.MemoryUsageData;
+
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 
-/** MemoryDataObserver
+/**
+ * MemoryDataObserver
  *
  * Depli implementation for loading observers MemoryMXBean
- * Load memory management interface of the observers JVM.
+ * Load non persistent management interface of the observers JVM.
  *
- * Created by lpsandaruwan on 3/23/17.
+ * @author Lahiru Pathirage
+ * @since 3/23/17
  */
 
 public class MemoryDataObserver {
 
-    private JMXConnectionObserver JMXConnectionObserver;
+    private JMXConnectionObserver jmxConnectionObserver;
     private MemoryMXBean memoryMXBean;
-    private com.depli.data.object.MemoryData memoryData;
+    private MemoryUsageData memoryUsageData;
 
-    public MemoryDataObserver(JMXConnectionObserver JMXConnectionObserver) {
-        this.JMXConnectionObserver = JMXConnectionObserver;
-        this.memoryData = new com.depli.data.object.MemoryData();
+    public MemoryDataObserver(JMXConnectionObserver jmxConnectionObserver) {
+        this.jmxConnectionObserver = jmxConnectionObserver;
+        this.memoryUsageData = new MemoryUsageData();
     }
 
     public MemoryMXBean getMemoryMXBean() {
         return memoryMXBean;
     }
 
-    public com.depli.data.object.MemoryData getMemoryData() {
-        return memoryData;
+    public MemoryUsageData getMemoryUsageData() {
+        return memoryUsageData;
     }
 
-    // Initialize observers MemoryMXBean
+    // Initialize Memory MemoryMXBean connection
     public MemoryMXBean initialize() throws IOException {
         memoryMXBean = ManagementFactory.newPlatformMXBeanProxy(
-                JMXConnectionObserver.getmBeanServerConnection(),
+                jmxConnectionObserver.getmBeanServerConnection(),
                 ManagementFactory.MEMORY_MXBEAN_NAME,
                 MemoryMXBean.class
         );
@@ -43,12 +47,12 @@ public class MemoryDataObserver {
     }
 
     // Refresh and get MemoryDataObserver
-    public com.depli.data.object.MemoryData refreshData() {
-        memoryData.setData(
+    public MemoryUsageData refreshData() {
+        memoryUsageData.setData(
                 memoryMXBean.getHeapMemoryUsage(),
                 memoryMXBean.getNonHeapMemoryUsage(),
                 memoryMXBean.getObjectPendingFinalizationCount()
         );
-        return memoryData;
+        return memoryUsageData;
     }
 }

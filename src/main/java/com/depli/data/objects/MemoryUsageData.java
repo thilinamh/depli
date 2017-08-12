@@ -1,22 +1,23 @@
-package com.depli.data.object;
+package com.depli.data.objects;
 
 import java.lang.management.MemoryUsage;
 
 /**
- * Keeps memory MX Bean data
- * <p>
- * Created by lpsandaruwan on 3/24/17.
+ * Keeps non persistent MX Bean data
+ * 
+ * @author Lahiru Pathirage
+ * @since 3/24/17
  */
 
-public class MemoryData {
+public class MemoryUsageData {
 
-    private final DMemoryUsage heapMemory;
-    private final DMemoryUsage nonHeapMemory;
+    private final MemoryBlock heapMemory;
+    private final MemoryBlock nonHeapMemory;
     private int awaitFinalizationObjectCount;
 
-    public MemoryData() {
-        heapMemory = new DMemoryUsage();
-        nonHeapMemory = new DMemoryUsage();
+    public MemoryUsageData() {
+        heapMemory = new MemoryBlock();
+        nonHeapMemory = new MemoryBlock();
     }
 
     public void setData(MemoryUsage heapMemory, MemoryUsage nonHeapMemory, int awaitFinalizationObjectCount) {
@@ -25,11 +26,11 @@ public class MemoryData {
         this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
     }
 
-    public DMemoryUsage getHeapMemory() {
+    public MemoryBlock getHeapMemory() {
         return heapMemory;
     }
 
-    public DMemoryUsage getNonHeapMemory() {
+    public MemoryBlock getNonHeapMemory() {
         return nonHeapMemory;
     }
 
@@ -41,3 +42,4 @@ public class MemoryData {
         this.awaitFinalizationObjectCount = awaitFinalizationObjectCount;
     }
 }
+

@@ -1,25 +1,18 @@
-package com.depli.data.object;
+package com.depli.data.objects;
 
 import java.lang.management.MemoryUsage;
 
 /**
- * DMemoryUsage
- *
- * Depli's implementation of MemoryUsage class to keep data in MB.
- * <p>
- * @author Lahiru Pathirage
- * @since 3/28/17
+ * Created by Lahiru Pathirage on 8/6/2017.
  */
-
-public class DMemoryUsage {
+public class MemoryBlock {
 
     private float init;
     private float used;
     private float committed;
     private float max;
 
-    // default constructor
-    public DMemoryUsage() {
+    public MemoryBlock() {
     }
 
     public void setData(MemoryUsage memoryUsage) {

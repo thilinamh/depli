@@ -1,6 +1,6 @@
 package com.depli.controllers;
 
-import com.depli.data.object.PEOperatingSystemData;
+import com.depli.data.objects.PlatformSystemData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +20,9 @@ import static com.depli.DepliApplication.nodeDataMap;
 public class PlatformSystemDataController {
 
     @RequestMapping(value = "/{nodeId}", method = RequestMethod.GET)
-    public PEOperatingSystemData findClassLoadingDataById(@PathVariable long nodeId) {
+    public PlatformSystemData findClassLoadingDataById(@PathVariable long nodeId) {
         if (nodeDataMap.getByNodeId(nodeId).isInitialized()) {
-            return nodeDataMap.getByNodeId(nodeId).getPlatformSystemDataObserver().getPeOperatingSystemData();
+            return nodeDataMap.getByNodeId(nodeId).getPlatformSystemDataObserver().getPlatformSystemData();
         }
 
         return null;

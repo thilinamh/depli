@@ -1,4 +1,4 @@
-package com.depli.services.implementations;
+package com.depli.services.impl;
 
 /**
  * Created by lpsandaruwan on 5/21/17.

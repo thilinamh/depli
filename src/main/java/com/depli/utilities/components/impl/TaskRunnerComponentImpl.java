@@ -1,8 +1,8 @@
-package com.depli.utilities.components.implementations;
+package com.depli.utilities.components.impl;
 
+import com.depli.services.JMXNodeService;
 import com.depli.utilities.components.DataInitializerComponent;
 import com.depli.utilities.components.DataRefresherComponent;
-import com.depli.services.JMXNodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,15 +16,15 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class TaskRunnerComponentImplementation implements CommandLineRunner {
+public class TaskRunnerComponentImpl implements CommandLineRunner {
 
     private final DataInitializerComponent dataInitializerComponent;
     private final DataRefresherComponent dataRefresherComponent;
-    // JMXNode data from database
+
     @Autowired
     private JMXNodeService jmxNodeService;
 
-    public TaskRunnerComponentImplementation(DataInitializerComponent dataInitializerComponent, DataRefresherComponent dataRefresherComponent) {
+    public TaskRunnerComponentImpl(DataInitializerComponent dataInitializerComponent, DataRefresherComponent dataRefresherComponent) {
         this.dataInitializerComponent = dataInitializerComponent;
         this.dataRefresherComponent = dataRefresherComponent;
     }

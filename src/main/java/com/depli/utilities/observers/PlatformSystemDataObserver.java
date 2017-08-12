@@ -1,7 +1,7 @@
 package com.depli.utilities.observers;
 
 
-import com.depli.data.object.PEOperatingSystemData;
+import com.depli.data.objects.PlatformSystemData;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -17,17 +17,17 @@ import java.lang.management.ManagementFactory;
 public class PlatformSystemDataObserver {
 
     private JMXConnectionObserver JMXConnectionObserver;
-    private PEOperatingSystemData peOperatingSystemData;
+    private PlatformSystemData platformSystemData;
 
     private com.sun.management.OperatingSystemMXBean peOperatingSystemMXBean;
 
     public PlatformSystemDataObserver(JMXConnectionObserver JMXConnectionObserver) {
         this.JMXConnectionObserver = JMXConnectionObserver;
-        this.peOperatingSystemData = new PEOperatingSystemData();
+        this.platformSystemData = new PlatformSystemData();
     }
 
-    public PEOperatingSystemData getPeOperatingSystemData() {
-        return peOperatingSystemData;
+    public PlatformSystemData getPlatformSystemData() {
+        return platformSystemData;
     }
 
     public com.sun.management.OperatingSystemMXBean getPeOperatingSystemMXBean() {
@@ -45,9 +45,9 @@ public class PlatformSystemDataObserver {
         return peOperatingSystemMXBean;
     }
 
-    // Refresh PEOperatingSystemData
-    public PEOperatingSystemData refreshData() {
-        peOperatingSystemData.setData(
+    // Refresh PlatformSystemData
+    public PlatformSystemData refreshData() {
+        platformSystemData.setData(
                 peOperatingSystemMXBean.getSystemCpuLoad(),
                 peOperatingSystemMXBean.getFreeSwapSpaceSize(),
                 peOperatingSystemMXBean.getFreePhysicalMemorySize(),
@@ -55,6 +55,6 @@ public class PlatformSystemDataObserver {
                 peOperatingSystemMXBean.getTotalPhysicalMemorySize(),
                 peOperatingSystemMXBean.getTotalSwapSpaceSize()
         );
-        return peOperatingSystemData;
+        return platformSystemData;
     }
 }

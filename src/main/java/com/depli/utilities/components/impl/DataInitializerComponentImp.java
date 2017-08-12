@@ -1,11 +1,11 @@
-package com.depli.utilities.components.implementations;
+package com.depli.utilities.components.impl;
 
-import com.depli.utilities.components.DataInitializerComponent;
 import com.depli.data.NodeData;
 import com.depli.data.NodeDataMap;
-import com.depli.entities.JMXNode;
-import com.depli.utilities.observers.JMXConnectionObserver;
+import com.depli.entities.persistent.JMXNode;
 import com.depli.services.JMXNodeService;
+import com.depli.utilities.components.DataInitializerComponent;
+import com.depli.utilities.observers.JMXConnectionObserver;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -16,26 +16,27 @@ import static com.depli.DepliApplication.*;
 
 /**
  * DataInitializerComponent
+ *
  * Initialize node connections list and MX bean data objects
  * <p>
  * Created by lpsandaruwan on 3/24/17.
  */
 
 @Component
-public class DataInitializerComponentImplementation implements DataInitializerComponent {
+public class DataInitializerComponentImp implements DataInitializerComponent {
 
-    private static final Logger logger = Logger.getLogger(DataInitializerComponentImplementation.class);
+    private static final Logger logger = Logger.getLogger(DataInitializerComponentImp.class);
 
-    // Create object hash map filling it with NodeData objects
+    // Create objects hash map filling it with NodeData objects
     public void initializeDJMXNodeConnections(JMXNodeService jmxNodeService) throws Exception {
         // initialize new node data resource
         nodeDataMap = new NodeDataMap();
 
         for (JMXNode jmxNode : jmxNodeService.findAll()) {
-            JMXConnectionObserver JMXConnectionObserverImplementationObserverComponent = new JMXConnectionObserver(jmxNode);
-            JMXConnectionObserverImplementationObserverComponent.getConnection();
+            JMXConnectionObserver jmxConnectionObserver = new JMXConnectionObserver(jmxNode);
+            jmxConnectionObserver.getConnection();
 
-            nodeDataMap.addNewNode(jmxNode.getNodeId(), new NodeData(JMXConnectionObserverImplementationObserverComponent));
+            nodeDataMap.addNewNode(jmxNode.getNodeId(), new NodeData(jmxConnectionObserver));
             Thread.sleep(2000);
         }
 
@@ -47,7 +48,10 @@ public class DataInitializerComponentImplementation implements DataInitializerCo
         // Iterate node data map initialize MXBean data classes
         for (Map.Entry<Long, NodeData> nodeDataEntry : nodeDataMap.getNodeDataMap().entrySet()) {
 
-            System.out.println("Initializing observers MXBean on nodeId: " + nodeDataEntry.getValue().getJMXConnectionObserver().getJmxNode().getNodeId());
+            logger.info(
+                    "Initializing observers MXBean on nodeId: "
+                            + nodeDataEntry.getValue().getJMXConnectionObserver().getJmxNode().getNodeId()
+            );
 
             // Initialize observers ClassLoading MX bean data
             nodeDataEntry.getValue().getClassLoadingDataObserver().initialize();

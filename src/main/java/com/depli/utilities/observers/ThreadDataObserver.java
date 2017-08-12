@@ -16,18 +16,18 @@ public class ThreadDataObserver {
 
     private JMXConnectionObserver JMXConnectionObserver;
     private ThreadMXBean threadMXBean;
-    private com.depli.data.object.ThreadData threadData;
+    private com.depli.data.objects.ThreadData threadData;
 
     public ThreadDataObserver(JMXConnectionObserver JMXConnectionObserver) {
         this.JMXConnectionObserver = JMXConnectionObserver;
-        this.threadData = new com.depli.data.object.ThreadData();
+        this.threadData = new com.depli.data.objects.ThreadData();
     }
 
     public ThreadMXBean getThreadMXBean() {
         return threadMXBean;
     }
 
-    public com.depli.data.object.ThreadData getThreadData() {
+    public com.depli.data.objects.ThreadData getThreadData() {
         return threadData;
     }
 
@@ -42,8 +42,8 @@ public class ThreadDataObserver {
         return threadMXBean;
     }
 
-    // Refresh and get ThreadDataObserver object
-    public com.depli.data.object.ThreadData refreshData() {
+    // Refresh and get ThreadDataObserver objects
+    public com.depli.data.objects.ThreadData refreshData() {
         threadData.setData(threadMXBean.getThreadInfo(threadMXBean.getAllThreadIds(), Integer.MAX_VALUE));
 
         return threadData;

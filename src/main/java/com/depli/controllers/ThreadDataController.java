@@ -1,6 +1,6 @@
 package com.depli.controllers;
 
-import com.depli.data.object.ThreadData;
+import com.depli.data.objects.ThreadData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

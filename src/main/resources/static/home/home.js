@@ -8,7 +8,7 @@ var homeViewModule = angular.module("homeViewModule", ["chart.js"]);
 
 homeViewModule
     .controller("homeViewModule", function ($http, $interval, $rootScope, $scope, jmxNodeService) {
-        // jmx node object
+        // jmx node objects
         $scope.jmxNodeList = [];
         $scope.isNullList = true;
 

@@ -1,6 +1,6 @@
 package com.depli.controllers;
 
-import com.depli.data.object.RuntimeData;
+import com.depli.data.objects.RuntimeData;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
